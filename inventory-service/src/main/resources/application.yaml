@@ -3,4 +3,9 @@ spring:
     name: inventory-service
   config:
     import: "optional:configserver:http://localhost:8088"
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/rentACar"
+    username: "postgres"
+    password: "12345"
+
 

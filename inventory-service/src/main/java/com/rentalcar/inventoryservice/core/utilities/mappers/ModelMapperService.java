@@ -1,4 +1,4 @@
-package com.rentalcar.inventoryservice.core.utilities;
+package com.rentalcar.inventoryservice.core.utilities.mappers;
 
 import org.modelmapper.ModelMapper;
 

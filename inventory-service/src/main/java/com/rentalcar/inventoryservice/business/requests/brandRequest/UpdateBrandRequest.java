@@ -1,13 +1,15 @@
-package com.rentalcar.inventoryservice.dtos;
+package com.rentalcar.inventoryservice.business.requests.brandRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class GetAllBrandResponse {
+public class UpdateBrandRequest {
+
     private int id;
+
     private String name;
 }
