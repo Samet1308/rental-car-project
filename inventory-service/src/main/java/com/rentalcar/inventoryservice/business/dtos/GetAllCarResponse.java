@@ -47,4 +47,8 @@ public class GetAllCarResponse {
     @NotNull
     @NotBlank
     private String colorName;
+
+    @NotNull
+    @NotBlank
+    private String imageUrl;
 }

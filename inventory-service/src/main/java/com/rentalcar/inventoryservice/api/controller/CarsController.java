@@ -4,6 +4,7 @@ import com.rentalcar.inventoryservice.business.abstracts.CarService;
 import com.rentalcar.inventoryservice.business.dtos.GetAllCarResponse;
 import com.rentalcar.inventoryservice.business.requests.carRequest.CreateCarRequest;
 import com.rentalcar.inventoryservice.business.requests.carRequest.UpdateCarRequest;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,12 @@ public class CarsController {
     }
     @PostMapping
     @ResponseStatus(code= HttpStatus.CREATED)
-    public void add(CreateCarRequest createCarRequest){
+    public void add(@RequestBody @Valid CreateCarRequest createCarRequest){
         this.carService.add(createCarRequest);
     }
 
     @PutMapping
-    public void update(UpdateCarRequest updateCarRequest){
+    public void update(@RequestBody UpdateCarRequest updateCarRequest){
         this.carService.update(updateCarRequest);
     }
     @DeleteMapping("/{id}")

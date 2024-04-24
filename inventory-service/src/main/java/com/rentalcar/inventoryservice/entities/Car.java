@@ -33,9 +33,13 @@ public class Car {
     @Column(name = "state_name")
     private String stateName;
 
+    @Column (name = "image_url")
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;
+
+
 
 }

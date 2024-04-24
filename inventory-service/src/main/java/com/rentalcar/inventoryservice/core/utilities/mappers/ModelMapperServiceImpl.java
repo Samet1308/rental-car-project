@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class ModelMapperServiceImpl implements ModelMapperService {
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Override
     public ModelMapper forResponse() {
