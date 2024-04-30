@@ -8,14 +8,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
-        <module name="service-registry" />
         <module name="inventory-service" />
+        <module name="customer-service" />
+        <module name="service-registry" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config-server" options="-parameters" />
+      <module name="customer-service" options="-parameters" />
       <module name="inventory-service" options="-parameters" />
       <module name="service-registry" options="-parameters" />
     </option>
