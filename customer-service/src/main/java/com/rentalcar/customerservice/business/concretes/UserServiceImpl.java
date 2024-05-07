@@ -1,46 +1,37 @@
 package com.rentalcar.customerservice.business.concretes;
 
 import com.rentalcar.customerservice.business.abstracts.UserService;
-import com.rentalcar.customerservice.business.dtos.GetAllUsersResponse;
-import com.rentalcar.customerservice.business.requests.CreateUserRequest;
 import com.rentalcar.customerservice.dataAccess.abstracts.UserRepository;
 import com.rentalcar.customerservice.entities.User;
 import com.rentalcar.customerservice.enums.UserRole;
+import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-    @Override
-    public GetAllUsersResponse add(CreateUserRequest createUserRequest) {
-        User user = new User();
-        user.setName(createUserRequest.getName());
-        user.setEmail(createUserRequest.getEmail());
-        user.setPassword(createUserRequest.getPassword());
-        user.setUserRole(UserRole.CUSTOMER);
+    private final UserRepository userRepository;
 
-        User createdUser = userRepository.save(user);
-        GetAllUsersResponse usersResponse = new GetAllUsersResponse();
-        usersResponse.setId(createdUser.getId());
+    @PostConstruct
+    public void createAdminAccount(){
+        User adminAccount = this.userRepository.findByUserRole(UserRole.ADMIN);
+        if(adminAccount == null){
+            User newAdminAccount = new User();
+            newAdminAccount.setName("admin");
+            newAdminAccount.setEmail("admin@test.com");
+            newAdminAccount.setPassword(new BCryptPasswordEncoder().encode("admin"));
+            newAdminAccount.setUserRole(UserRole.ADMIN);
 
-
-        return usersResponse;
+            userRepository.save(newAdminAccount);
+            System.out.println("Admin oluşturuldu.");
+        }
     }
-
-    @Override
-    public boolean hasCustomerWithEmail(String email) {
-        return userRepository.findFirstByEmail(email).isPresent();
-    }
-
-    @Override
-    public void delete(@PathVariable Long id) {
-        this.userRepository.deleteById(id);
-    }
-
-
 
 }
