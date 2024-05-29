@@ -1,19 +1,21 @@
 package com.rentalcar.inventoryservice.business.abstracts;
 
-import com.rentalcar.inventoryservice.business.dtos.GetAllCarResponse;
-import com.rentalcar.inventoryservice.business.requests.carRequest.CreateCarRequest;
-import com.rentalcar.inventoryservice.business.requests.carRequest.UpdateCarRequest;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.rentalcar.inventoryservice.business.dtos.CarDTO;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface CarService {
 
-    List<GetAllCarResponse> getAll();
+    List<CarDTO> getAllCarsByModel(Long modelId);
 
-    void add(CreateCarRequest createCarRequest);
+    CarDTO postCar(Long modelId, CarDTO carDTO) throws IOException;
 
-    void update(UpdateCarRequest updateCarRequest);
+    void deleteCar(Long carId);
+    
+    CarDTO getCarById(Long carId);
 
-    void delete(@PathVariable int id);
+    boolean updateCar(Long carId, CarDTO carDTO) throws IOException;
+
+//    boolean bookCar(BookCarDTO bookCarDTO);
 }

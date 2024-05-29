@@ -40,13 +40,13 @@ public class AuthController {
     private UserRepository userRepository;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signupCustomer(@RequestBody CreateUserRequest createUserRequest){
-        if(authService.hasCustomerWithEmail(createUserRequest.getEmail()))
-            return new ResponseEntity<>("Customer is already exist with this email",HttpStatus.NOT_ACCEPTABLE);
+    public ResponseEntity<?> signupCustomer(@RequestBody CreateUserRequest createUserRequest) {
+        if (authService.hasCustomerWithEmail(createUserRequest.getEmail()))
+            return new ResponseEntity<>("Customer is already exist with this email", HttpStatus.NOT_ACCEPTABLE);
         GetAllUsersResponse createdCustomerDTO = this.authService.add(createUserRequest);
-        if(createdCustomerDTO == null) return new ResponseEntity<>
+        if (createdCustomerDTO == null) return new ResponseEntity<>
                 ("Customer is not created. Try again later.", HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(createdCustomerDTO,HttpStatus.CREATED);
+        return new ResponseEntity<>(createdCustomerDTO, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
