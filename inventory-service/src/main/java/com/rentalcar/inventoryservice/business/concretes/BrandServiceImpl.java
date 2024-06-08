@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 public class BrandServiceImpl implements BrandService {
 
     private BrandRepository brandRepository;
-    private ModelMapperService modelMapperService;
-    private BrandBusinessRules brandBusinessRules;
 
     @Override
     public List<BrandDTO> getAllBrands() {

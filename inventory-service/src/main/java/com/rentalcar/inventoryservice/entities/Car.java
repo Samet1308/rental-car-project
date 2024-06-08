@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Table(name = "cars")
 @AllArgsConstructor
@@ -41,6 +43,24 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<BookCar> bookCars = new HashSet<>();
+
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", type='" + type + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", dailyPrice=" + dailyPrice +
+                ", modelYear=" + modelYear +
+                ", model=" + (model != null ? model.getName() : "null") +
+                '}';
+    }
 
     
 

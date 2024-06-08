@@ -1,6 +1,7 @@
 package com.rentalcar.inventoryservice.api.controller;
 
 import com.rentalcar.inventoryservice.business.abstracts.ModelService;
+import com.rentalcar.inventoryservice.business.dtos.BrandDTO;
 import com.rentalcar.inventoryservice.business.dtos.GetAllModelResponse;
 import com.rentalcar.inventoryservice.business.dtos.ModelDTO;
 import com.rentalcar.inventoryservice.business.requests.modelRequest.CreateModelRequest;
@@ -27,7 +28,12 @@ public class ModelsController {
 
     private ModelRepository modelRepository;
 
-
+    @GetMapping("/models")
+    public ResponseEntity<List<ModelDTO>> getAllModels(){
+        List<ModelDTO> modelDtoList = modelService.getAllModels();
+        if(modelDtoList==null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(modelDtoList);
+    }
     @PostMapping("/{brandId}/model")
     public ResponseEntity<?> postModel(@PathVariable Long brandId , @ModelAttribute ModelDTO modelDTO) throws IOException {
         ModelDTO createdmodelDTO = modelService.postModel(brandId, modelDTO);

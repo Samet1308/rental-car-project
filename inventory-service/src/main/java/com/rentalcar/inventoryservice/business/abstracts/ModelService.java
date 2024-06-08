@@ -1,5 +1,6 @@
 package com.rentalcar.inventoryservice.business.abstracts;
 
+import com.rentalcar.inventoryservice.business.dtos.BrandDTO;
 import com.rentalcar.inventoryservice.business.dtos.GetAllModelResponse;
 import com.rentalcar.inventoryservice.business.dtos.ModelDTO;
 import com.rentalcar.inventoryservice.business.requests.modelRequest.CreateModelRequest;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public interface ModelService {
 
-
+    List<ModelDTO> getAllModels();
     ModelDTO postModel(Long brandId, ModelDTO modelDTO) throws IOException;
 
     List<ModelDTO> getAllModelsByBrand(Long brandId);

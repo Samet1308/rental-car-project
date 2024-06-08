@@ -1,6 +1,7 @@
-package com.rentalcar.customerservice.business.dtos;
+package com.rentalcar.inventoryservice.business.dtos;
 
-import com.rentalcar.customerservice.enums.BookCarStatus;
+
+import com.rentalcar.inventoryservice.enums.BookCarStatus;
 import lombok.Data;
 
 import java.util.Date;
@@ -22,4 +23,8 @@ public class BookCarDTO {
     private Long userId;
 
     private Long carId;
+
+    private String userName;
+
+    private String email;
 }

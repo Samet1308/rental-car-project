@@ -59,11 +59,32 @@ public class CarsController {
         }
 
     }
+    @PostMapping("/car/book")
+    public ResponseEntity<?> bookCar( @RequestBody BookCarDTO bookCarDTO) {
+        boolean success = carService.bookCar(bookCarDTO);
+        if (success) return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    @GetMapping("/car/bookings/{userId}")
+    public ResponseEntity<List<BookCarDTO>> getBookingsByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(carService.getBookingsByUserId(userId));
+    }
 
+    @GetMapping("/car/bookings")
+    public ResponseEntity<List<BookCarDTO>> getBookings() {
+        return ResponseEntity.ok(carService.getBookings());
+    }
 
+    @GetMapping("/car/booking/{bookingId}/{status}")
+    public ResponseEntity<?> changeBookingStatus(@PathVariable Long bookingId, @PathVariable String status){
+        boolean success = carService.changeBookingStatus(bookingId, status);
+        if(success) return ResponseEntity.ok().build();
+        return ResponseEntity.notFound().build();
+    }
 
-
-
-
+    @PostMapping("/car/search")
+    public ResponseEntity<?> searchCar(@RequestBody SearchCarDTO searchCarDTO) {
+        return ResponseEntity.ok(carService.searchCar(searchCarDTO));
+    }
 
 }

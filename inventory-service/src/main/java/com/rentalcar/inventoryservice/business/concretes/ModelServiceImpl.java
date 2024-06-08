@@ -31,6 +31,10 @@ public class ModelServiceImpl implements ModelService {
     private BrandRepository brandRepository;
 
 
+    @Override
+    public List<ModelDTO> getAllModels() {
+        return modelRepository.findAll().stream().map(Model::getModelDto).collect(Collectors.toList());
+    }
 
     @Override
     public ModelDTO postModel(Long brandId, ModelDTO modelDTO) throws IOException {
