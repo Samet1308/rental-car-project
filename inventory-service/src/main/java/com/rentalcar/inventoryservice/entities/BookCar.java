@@ -70,6 +70,7 @@ public class BookCar {
 
     public BookCarDTO getBookACarDto(){
         BookCarDTO bookACarDto = new BookCarDTO();
+        bookACarDto.setCarName(car.getName());
         bookACarDto.setId(id);
         bookACarDto.setDays(days);
         bookACarDto.setBookCarStatus(bookCarStatus);

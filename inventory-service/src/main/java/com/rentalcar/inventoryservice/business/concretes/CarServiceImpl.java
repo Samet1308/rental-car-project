@@ -166,7 +166,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarDtoListDto searchCar(SearchCarDTO searchCarDTO) {
         Car car = new Car();
-        car.setModel(searchCarDTO.getModel());
+        car.setModelYear(searchCarDTO.getModelYear());
         car.setType(searchCarDTO.getType());
         car.setTransmission(searchCarDTO.getTransmission());
         car.setColor(searchCarDTO.getColor());
@@ -174,6 +174,7 @@ public class CarServiceImpl implements CarService {
                 ExampleMatcher.matchingAll()
                         .withMatcher("model", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
                         .withMatcher("type", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+                        .withMatcher("modelYear", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
                         .withMatcher("transmission", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
                         .withMatcher("color", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
         Example<Car> carExample = Example.of(car,exampleMatcher);

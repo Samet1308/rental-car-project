@@ -7,9 +7,11 @@ import lombok.Data;
 @Data
 public class SearchCarDTO {
 
-    private Brand brand;
+    private String brandName;
 
-    private Model model;
+    private String modelName;
+
+    private Long modelYear;
 
     private String type;
 
